@@ -22,9 +22,7 @@ Things to Change: imageObject make it to class not strct : read strct and class
     
     
     static let sharedInstance = DataStore()
-    
     var pictureArray = [ImageObject]()
-    //let downloader = ImageDownloader()
     
     init(){}
     

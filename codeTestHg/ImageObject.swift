@@ -8,13 +8,6 @@
 
 //import Foundation
 import UIKit
-/*
- 
- "imageURL": "http:/
- "imageDescription":
- "imageName": "Toad"
-
- */
 
 class ImageObject {
     var url = ""

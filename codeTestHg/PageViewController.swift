@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-//import AlamofireImage
 
 
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
@@ -89,15 +88,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         return orderedViewControllers[nextIndex]
     }
     
-//    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int
-//    {
-//        return self.imageObjects.count
-//    }
-//    
-//    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int
-//    {
-//        return 0
-//    }
+
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
         return orderedViewControllers.count
@@ -110,6 +101,17 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         }
         
         return firstViewControllerIndex
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool)
+    {
+        if (!completed)
+        {
+            return
+        }
+        self.currentIndex = (self.viewControllers!.first?.view.tag)!
+        print("the page index is \(self.currentIndex)")
+
     }
     
 }
