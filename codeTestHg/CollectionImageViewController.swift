@@ -115,8 +115,11 @@ class CollectionImageViewController: UIViewController, UICollectionViewDataSourc
 //    }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let pageVC = PageViewController()
+        //let pageVC = PageViewController()
+         let pageVC = PageViewController.init(transitionStyle: UIPageViewControllerTransitionStyle.Scroll, navigationOrientation: .Horizontal, options: nil)
+        
         pageVC.imageObjects = self.hgImageDataStore.pictureArray
+        pageVC.tappedCellIndex = indexPath.row
 
         self.navigationController?.pushViewController(pageVC, animated: true)
         print("selected cell #\(indexPath.item)!")

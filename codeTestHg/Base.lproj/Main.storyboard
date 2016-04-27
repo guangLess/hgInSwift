@@ -96,24 +96,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TcM-KL-gZq">
-                                <rect key="frame" x="0.0" y="56" width="600" height="544"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsZ-6o-5ge">
+                                <rect key="frame" x="0.0" y="586.5" width="600" height="13.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="TcM-KL-gZq" firstAttribute="top" secondItem="8KH-QA-xfA" secondAttribute="bottom" constant="36" id="7Ey-4q-S8K"/>
+                            <constraint firstItem="TcM-KL-gZq" firstAttribute="top" secondItem="8KH-QA-xfA" secondAttribute="bottom" id="7Ey-4q-S8K"/>
+                            <constraint firstItem="OsZ-6o-5ge" firstAttribute="leading" secondItem="TcM-KL-gZq" secondAttribute="leading" id="7Je-hy-pKm"/>
                             <constraint firstItem="TcM-KL-gZq" firstAttribute="bottom" secondItem="2lj-r2-ygJ" secondAttribute="top" id="9z8-zf-LA4"/>
-                            <constraint firstAttribute="trailing" secondItem="TcM-KL-gZq" secondAttribute="trailing" id="Obr-Xf-UEH"/>
+                            <constraint firstItem="OsZ-6o-5ge" firstAttribute="bottom" secondItem="2lj-r2-ygJ" secondAttribute="top" id="Lrp-lt-gsd"/>
+                            <constraint firstItem="TcM-KL-gZq" firstAttribute="trailing" secondItem="1BS-8m-eGl" secondAttribute="trailing" id="Obr-Xf-UEH"/>
                             <constraint firstItem="TcM-KL-gZq" firstAttribute="leading" secondItem="1BS-8m-eGl" secondAttribute="leading" id="kvA-sa-zqV"/>
+                            <constraint firstItem="OsZ-6o-5ge" firstAttribute="trailing" secondItem="TcM-KL-gZq" secondAttribute="trailing" id="uY6-jc-MhP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="TcM-KL-gZq" id="4Kw-JP-jkQ"/>
+                        <outlet property="indexLabel" destination="OsZ-6o-5ge" id="rJG-AJ-BUh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kuh-Ia-987" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2802" y="229"/>
+            <point key="canvasLocation" x="2272" y="229"/>
         </scene>
         <!--Hinge-->
         <scene sceneID="QZo-3H-JrK">

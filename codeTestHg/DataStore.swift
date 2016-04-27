@@ -56,7 +56,7 @@ Things to Change: imageObject make it to class not strct : read strct and class
 //                        //NSNotificationCenter.defaultCenter().postNotificationName("ImageDownloaded", object: nil)
 //                        
 //                    })
-                    let eachImageObject = ImageObject(url:eachImage["imageURL"]!, description: eachImage["imageDescription"]!, name: eachImage["imageName"]!)
+                    let eachImageObject = ImageObject(url:eachImage["imageURL"]!, description: eachImage["imageDescription"]!, name: eachImage["imageName"]!,imageNumber:String(i))
                     self.pictureArray.append(eachImageObject)
        }
             }

@@ -14,6 +14,7 @@ class ContentViewController: UIViewController {
     var imageObject: ImageObject?
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var indexLabel: UILabel!
 
     
     override func viewDidLoad() {
@@ -30,7 +31,5 @@ class ContentViewController: UIViewController {
             imageView.image = UIImage(named: "noImage")
         }
     }
-
-
     
 }
