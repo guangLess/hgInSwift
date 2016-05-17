@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--☀︎☁︎☾♡★♥︎▲✦-->
+        <!--☀︎☾★▲-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CollectionImageViewController" customModule="codeTestHg" customModuleProvider="target" sceneMemberID="viewController">
@@ -44,19 +44,28 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FOH-eL-Sxq">
+                                                    <rect key="frame" x="45" y="45" width="45" height="45"/>
+                                                    <color key="color" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="3Mg-hr-KnM" firstAttribute="top" secondItem="VaL-JV-u45" secondAttribute="top" id="96c-st-OYj"/>
                                             <constraint firstAttribute="trailing" secondItem="3Mg-hr-KnM" secondAttribute="trailing" id="LfL-QL-oHa"/>
+                                            <constraint firstItem="FOH-eL-Sxq" firstAttribute="top" secondItem="VaL-JV-u45" secondAttribute="top" constant="45" id="Q5Y-ee-lGR"/>
+                                            <constraint firstItem="FOH-eL-Sxq" firstAttribute="bottom" secondItem="VaL-JV-u45" secondAttribute="bottom" constant="-45" id="R6A-eH-eYV"/>
                                             <constraint firstItem="3Mg-hr-KnM" firstAttribute="leading" secondItem="VaL-JV-u45" secondAttribute="leading" id="XrY-CM-GIs"/>
+                                            <constraint firstItem="FOH-eL-Sxq" firstAttribute="trailing" secondItem="VaL-JV-u45" secondAttribute="trailing" constant="-45" id="eWn-9x-5Xx"/>
                                             <constraint firstAttribute="bottom" secondItem="3Mg-hr-KnM" secondAttribute="bottom" id="jNa-SJ-4Gs"/>
+                                            <constraint firstItem="FOH-eL-Sxq" firstAttribute="leading" secondItem="VaL-JV-u45" secondAttribute="leading" constant="45" id="nCk-zp-Hq1"/>
                                         </constraints>
                                         <size key="customSize" width="135" height="135"/>
                                         <connections>
                                             <outlet property="imageName" destination="rIb-ab-1b5" id="RrD-RK-GvC"/>
                                             <outlet property="imageView" destination="3Mg-hr-KnM" id="H3y-jw-nPu"/>
+                                            <outlet property="spinner" destination="FOH-eL-Sxq" id="nM1-mp-Gu0"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -74,7 +83,7 @@
                             <constraint firstItem="RON-ad-E7E" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kZB-px-fng"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="☀︎☁︎☾♡★♥︎▲✦" id="7hK-1I-rvL"/>
+                    <navigationItem key="navigationItem" title="☀︎☾★▲" id="7hK-1I-rvL"/>
                     <connections>
                         <outlet property="collectinView" destination="RON-ad-E7E" id="73o-dq-XZd"/>
                     </connections>
@@ -95,26 +104,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TcM-KL-gZq">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsZ-6o-5ge">
-                                <rect key="frame" x="0.0" y="586.5" width="600" height="13.5"/>
+                                <rect key="frame" x="0.0" y="586" width="600" height="14"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TcM-KL-gZq">
+                                <rect key="frame" x="0.0" y="10" width="600" height="580"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.98431372549999996" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="TcM-KL-gZq" firstAttribute="top" secondItem="8KH-QA-xfA" secondAttribute="bottom" id="7Ey-4q-S8K"/>
-                            <constraint firstItem="OsZ-6o-5ge" firstAttribute="leading" secondItem="TcM-KL-gZq" secondAttribute="leading" id="7Je-hy-pKm"/>
-                            <constraint firstItem="TcM-KL-gZq" firstAttribute="bottom" secondItem="2lj-r2-ygJ" secondAttribute="top" id="9z8-zf-LA4"/>
+                            <constraint firstItem="TcM-KL-gZq" firstAttribute="centerY" secondItem="1BS-8m-eGl" secondAttribute="centerY" id="0SL-aA-6Nf"/>
+                            <constraint firstItem="OsZ-6o-5ge" firstAttribute="leading" secondItem="1BS-8m-eGl" secondAttribute="leading" id="AN3-LC-XY8"/>
+                            <constraint firstItem="2lj-r2-ygJ" firstAttribute="top" secondItem="TcM-KL-gZq" secondAttribute="bottom" constant="10" id="Bhg-gK-hye"/>
+                            <constraint firstItem="OsZ-6o-5ge" firstAttribute="trailing" secondItem="TcM-KL-gZq" secondAttribute="trailing" id="DCH-s4-LLg"/>
+                            <constraint firstItem="OsZ-6o-5ge" firstAttribute="leading" secondItem="TcM-KL-gZq" secondAttribute="leading" id="HB4-19-Ll4"/>
                             <constraint firstItem="OsZ-6o-5ge" firstAttribute="bottom" secondItem="2lj-r2-ygJ" secondAttribute="top" id="Lrp-lt-gsd"/>
-                            <constraint firstItem="TcM-KL-gZq" firstAttribute="trailing" secondItem="1BS-8m-eGl" secondAttribute="trailing" id="Obr-Xf-UEH"/>
-                            <constraint firstItem="TcM-KL-gZq" firstAttribute="leading" secondItem="1BS-8m-eGl" secondAttribute="leading" id="kvA-sa-zqV"/>
-                            <constraint firstItem="OsZ-6o-5ge" firstAttribute="trailing" secondItem="TcM-KL-gZq" secondAttribute="trailing" id="uY6-jc-MhP"/>
+                            <constraint firstAttribute="trailing" secondItem="OsZ-6o-5ge" secondAttribute="trailing" id="dQI-SJ-Gxv"/>
                         </constraints>
                     </view>
                     <connections>
@@ -123,8 +132,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kuh-Ia-987" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="sbZ-O7-uNR"/>
             </objects>
-            <point key="canvasLocation" x="2272" y="229"/>
+            <point key="canvasLocation" x="1973" y="229"/>
         </scene>
         <!--Hinge-->
         <scene sceneID="QZo-3H-JrK">

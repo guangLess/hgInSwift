@@ -16,25 +16,12 @@ class ImageObject {
     var name = ""
     var imageNumber = ""
     var image: UIImage?
-    //    var thumbnail : UIImage
-    //    var fullImage : UIImage
-    
+
     init(url:String, description:String, name:String, imageNumber:String){
         self.url = url
         self.description = description
         self.name = name
         self.imageNumber = imageNumber
     }
-    
 }
 
-//    func equals(another: ImageObject) -> Bool {
-//        return self === another
-//    }
-//
-//
-//func ==(lhs: ImageObject, rhs: ImageObject) -> Bool {
-//    return lhs.equals(rhs)
-//}
-//
-//

@@ -28,7 +28,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         }
     }
     var orderedViewControllers = [ContentViewController]()
-    //    var pageViewController : UIPageViewController?
     var currentIndex : Int = 0
     var tappedCellIndex : Int = 0
     
@@ -40,31 +39,22 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         dataSource = self
 
         view.backgroundColor = .whiteColor()
-        
-        //if let firstContentVC = orderedViewControllers.first
         let aVC = orderedViewControllers[tappedCellIndex]
-//        if let firstContentVC = orderedViewControllers.first {
-//            setViewControllers([firstContentVC], direction: .Forward, animated: true, completion: nil)
-//       }
-        
         self.setViewControllers([aVC], direction: .Forward, animated: true, completion: nil)
-        
-        
     }
     
     func newContentVC(imageObject imageObject: ImageObject) -> ContentViewController {
-        
         let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("contentVC") as! ContentViewController
-        //contentViewController.view.backgroundColor = colors[Int(arc4random_uniform(2))]()
         contentViewController.view.backgroundColor = .blackColor()
         contentViewController.title = imageObject.name
         contentViewController.indexLabel.text = "\(imageObject.imageNumber)/\(imageObjects.count) -\(imageObject.name) \(imageObject.description)"
+        contentViewController.indexNumber = "\(imageObject.imageNumber)/\(imageObjects.count)"
         //print("contentViewController.indexLabel.text = \(contentViewController.indexLabel.text)")
         contentViewController.imageObject = imageObject // dont pass to the IMAGEVIEW; it doesnt exist yet! // pass to the PROPERTY :)
+
         return contentViewController
     }
 
-    
     func pageViewController(pageViewController: UIPageViewController,
                             viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.indexOf(viewController as! ContentViewController) else {
@@ -72,9 +62,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         }
         
         let previousIndex = viewControllerIndex - 1
-        
-        // User is on the first view controller and swiped left to loop to
-        // the last view controller.
         guard previousIndex >= 0 else {
             return orderedViewControllers.last
         }
@@ -104,7 +91,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         guard orderedViewControllersCount > nextIndex else {
             return nil
         }
-        
         return orderedViewControllers[nextIndex]
     }
     
@@ -129,12 +115,12 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         {
             return
         }
-        self.currentIndex = (self.viewControllers!.first?.view.tag)!
-        print("the page index is \(self.currentIndex)")
-        
-        //let index = pageViewController.viewControllers?.indexOf(viewControllers)
-
+        showIndexAtNavVC()
     }
     
-    
+    func showIndexAtNavVC () {
+        let vc = self.viewControllers![0] as! ContentViewController
+        print (vc.indexLabel.text!)
+        self.navigationItem.title = "\(vc.indexNumber)"
+    }
 }
