@@ -111,19 +111,35 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7TC-Vd-5f4">
+                                <rect key="frame" x="225" y="258" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="nmw-R5-zZV"/>
+                                </constraints>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2H-UH-yhC">
+                                <rect key="frame" x="279" y="268" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" red="1" green="0.77248658999999997" blue="0.75061793560000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TcM-KL-gZq">
                                 <rect key="frame" x="0.0" y="10" width="600" height="580"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.96470588239999999" green="0.98431372549999996" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="TcM-KL-gZq" firstAttribute="centerY" secondItem="1BS-8m-eGl" secondAttribute="centerY" id="0SL-aA-6Nf"/>
+                            <constraint firstItem="V2H-UH-yhC" firstAttribute="top" secondItem="7TC-Vd-5f4" secondAttribute="bottom" constant="8" symbolic="YES" id="24F-aC-maw"/>
                             <constraint firstItem="OsZ-6o-5ge" firstAttribute="leading" secondItem="1BS-8m-eGl" secondAttribute="leading" id="AN3-LC-XY8"/>
                             <constraint firstItem="2lj-r2-ygJ" firstAttribute="top" secondItem="TcM-KL-gZq" secondAttribute="bottom" constant="10" id="Bhg-gK-hye"/>
                             <constraint firstItem="OsZ-6o-5ge" firstAttribute="trailing" secondItem="TcM-KL-gZq" secondAttribute="trailing" id="DCH-s4-LLg"/>
+                            <constraint firstItem="V2H-UH-yhC" firstAttribute="centerX" secondItem="OsZ-6o-5ge" secondAttribute="centerX" id="GHa-Ho-qFR"/>
                             <constraint firstItem="OsZ-6o-5ge" firstAttribute="leading" secondItem="TcM-KL-gZq" secondAttribute="leading" id="HB4-19-Ll4"/>
                             <constraint firstItem="OsZ-6o-5ge" firstAttribute="bottom" secondItem="2lj-r2-ygJ" secondAttribute="top" id="Lrp-lt-gsd"/>
+                            <constraint firstItem="7TC-Vd-5f4" firstAttribute="top" secondItem="8KH-QA-xfA" secondAttribute="bottom" constant="238" id="U0o-Qs-f1D"/>
                             <constraint firstAttribute="trailing" secondItem="OsZ-6o-5ge" secondAttribute="trailing" id="dQI-SJ-Gxv"/>
+                            <constraint firstItem="7TC-Vd-5f4" firstAttribute="centerX" secondItem="V2H-UH-yhC" secondAttribute="centerX" id="vem-V6-m6p"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -133,6 +149,8 @@
                     </view>
                     <connections>
                         <outlet property="indexLabel" destination="OsZ-6o-5ge" id="rJG-AJ-BUh"/>
+                        <outlet property="progressLabel" destination="V2H-UH-yhC" id="YlG-D6-2qX"/>
+                        <outlet property="progressView" destination="7TC-Vd-5f4" id="sjm-BA-EQm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kuh-Ia-987" userLabel="First Responder" sceneMemberID="firstResponder"/>

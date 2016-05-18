@@ -12,8 +12,8 @@ import Alamofire
 
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
-    let colors = [UIColor.whiteColor, UIColor.purpleColor, UIColor.greenColor]
-    let pageTitles = ["Hi", "✦", "◉"]
+   // let colors = [UIColor.whiteColor, UIColor.purpleColor, UIColor.greenColor]
+   // let pageTitles = ["Hi", "✦", "◉"]
     var imageIndex = 0
     
     var imageObjects = [ImageObject]() {
@@ -38,9 +38,12 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         delegate = self
         dataSource = self
 
-        view.backgroundColor = .whiteColor()
+        view.backgroundColor = .blackColor()
         let aVC = orderedViewControllers[tappedCellIndex]
         self.setViewControllers([aVC], direction: .Forward, animated: true, completion: nil)
+        
+        //UIPageViewControllerOptionInterPageSpacingKey
+        
     }
     
     func newContentVC(imageObject imageObject: ImageObject) -> ContentViewController {

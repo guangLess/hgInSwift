@@ -10,27 +10,34 @@ import UIKit
 
 
 class ContentViewController: UIViewController, UIScrollViewDelegate {
-
+    
     var imageObject: ImageObject?
     var indexNumber : String = ""
-    
     private var imageView = UIImageView()
     private var scrollView = UIScrollView()
+    var counter: Int = 0 {
+        didSet{
+        let fractionalProgress = Float(counter) / 100.0
+        let animated = counter != 0
+        progressView.setProgress(fractionalProgress, animated: animated)
+        progressLabel.text = ("\(counter)%")
+        }
+   
+    }
     
-    
-    //@IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var indexLabel: UILabel!
-
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var progressLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         scrollView.delegate = self
         scrollView.frame = CGRectMake(0, 0, self.view.frame.width, view.frame.height)  //view.frame.height)
-        scrollView.backgroundColor = UIColor.cyanColor()
+        scrollView.backgroundColor = UIColor.clearColor() //UIColor.cyanColor()
         scrollView.contentSize = CGSizeMake(self.view.frame.width, view.frame.height) // set it at first and then tap to move it
         scrollView.bounces = false
-        //imageView.image = UIImage(named:"PM")
         
         imageView.contentMode = .ScaleAspectFit
         
@@ -44,19 +51,21 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         doubleTap.numberOfTapsRequired = 2
         scrollView.addGestureRecognizer(doubleTap)
         
+       // progressView.setProgress(0, animated: true)
+        
         print("viewDidLoad of ContentViewController called")
     }
-
- 
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if let imageToDisplay = imageObject?.image {
+            progressView.hidden = true
             imageView.image = imageToDisplay
         } else {
-            imageView.image = UIImage(named: "PM")
+            //imageView.image = UIImage(named: "PM")
+            progressBarSetUp()
         }
     }
-    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -65,14 +74,12 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        
         return imageView
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
         //self.imageView.contentMode = .Center
         //scrollView.contentInset = UIEdgeInsetsZero;
-        
     }
     
     func doubleTapAction() {
@@ -83,5 +90,19 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
             scrollView.setZoomScale(2, animated: true)
         }
     }
-   
+    
+    func progressBarSetUp () {
+        
+        progressLabel.text = "0%"
+        self.counter = 0
+        for _ in 0..<100 {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+                sleep(1)
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.counter+=1
+                    return
+                })
+            })
+        }
+    }
 }
