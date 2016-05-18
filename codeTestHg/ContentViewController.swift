@@ -14,25 +14,36 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     var imageObject: ImageObject?
     var indexNumber : String = ""
     
-    @IBOutlet weak var imageView: UIImageView!
+    private var imageView = UIImageView()
+    private var scrollView = UIScrollView()
+    
+    
+    //@IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var indexLabel: UILabel!
-    //@IBOutlet weak var actualImageScrollView: UIScrollView!
 
-    var imageViewTwo: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //imageViewTwo = UIImageView(image: UIImage(named: "PM"))
-//        actualImageScrollView.backgroundColor = UIColor.brownColor()
-//        actualImageScrollView.addSubview(imageViewTwo!)
-//        
-//        let doubleTap = UITapGestureRecognizer(target: self, action: #selector( doubleTapAction(_:)))
-//        doubleTap.numberOfTapsRequired = 2
-//        actualImageScrollView.addGestureRecognizer(doubleTap)
-//
-//        actualImageScrollView.delegate = self
-//        setZoomScale()
 
+        scrollView.delegate = self
+        scrollView.frame = CGRectMake(0, 0, self.view.frame.width, view.frame.height)  //view.frame.height)
+        scrollView.backgroundColor = UIColor.cyanColor()
+        scrollView.contentSize = CGSizeMake(self.view.frame.width, view.frame.height) // set it at first and then tap to move it
+        scrollView.bounces = false
+        //imageView.image = UIImage(named:"PM")
+        
+        imageView.contentMode = .ScaleAspectFit
+        
+        scrollView.addSubview(imageView)
+        view.addSubview(scrollView)
+        
+        scrollView.maximumZoomScale = 3
+        scrollView.minimumZoomScale = 1
+        
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector( doubleTapAction))
+        doubleTap.numberOfTapsRequired = 2
+        scrollView.addGestureRecognizer(doubleTap)
+        
         print("viewDidLoad of ContentViewController called")
     }
 
@@ -45,62 +56,32 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
             imageView.image = UIImage(named: "PM")
         }
     }
-      /*
-//    override func viewWillAppear(animated: Bool) {
-//        super.viewWillAppear(animated)
-//        if let imageToDisplay = imageObject?.image {
-//            imageViewTwo.image = imageToDisplay
-//            //imageViewTwo.image = imageToDisplay
-//        } else {
-//            imageViewTwo.image = UIImage(named: "PM")
-//            //imageViewTwo.image = UIImage(named: "noImage")
-//        }
-//    }
-//    
     
-//    override func viewDidLayoutSubviews() {
-//        setZoomScale()
-//    }
     
-    func doubleTapAction(gestureRecognizer: UIGestureRecognizer) {
-        print("guesture tap")
-        actualImageScrollView.backgroundColor = UIColor.redColor()
-
-        if (actualImageScrollView.zoomScale >= 1) {
-        actualImageScrollView.setZoomScale(0.10, animated: true)
-            print("guesture zoom in")
-
-        } else {
-        actualImageScrollView.setZoomScale(3, animated: true)
-            print("guesture zoom out")
-        }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollView.frame = view.bounds
+        imageView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height)
     }
-
-    func setZoomScale() {
-        let imageViewSize = imageViewTwo.bounds.size
-        let scrollViewSize = actualImageScrollView.bounds.size
-        let widthScale = scrollViewSize.width / imageViewSize.width
-        let heightScale = scrollViewSize.height / imageViewSize.height
+    
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         
-        actualImageScrollView.minimumZoomScale = min(widthScale, heightScale)
-        actualImageScrollView.zoomScale = 1.0
+        return imageView
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
-        let imageViewSize = imageViewTwo.frame.size
-        let scrollViewSize = actualImageScrollView.bounds.size
+        //self.imageView.contentMode = .Center
+        //scrollView.contentInset = UIEdgeInsetsZero;
         
-        let verticalPadding = imageViewSize.height < scrollViewSize.height ? (scrollViewSize.height - imageViewSize.height) / 2 : 0
-        let horizontalPadding = imageViewSize.width < scrollViewSize.width ? (scrollViewSize.width - imageViewSize.width) / 2 : 0
-        
-        actualImageScrollView.contentInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding)
-    
     }
     
-    
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        return imageViewTwo
+    func doubleTapAction() {
+        print ("image Tapped")
+        if (scrollView.zoomScale > 1) {
+            scrollView.setZoomScale(0.25, animated: true)
+        } else {
+            scrollView.setZoomScale(2, animated: true)
+        }
     }
-*/
-    
+   
 }

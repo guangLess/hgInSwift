@@ -125,9 +125,13 @@
                             <constraint firstItem="OsZ-6o-5ge" firstAttribute="bottom" secondItem="2lj-r2-ygJ" secondAttribute="top" id="Lrp-lt-gsd"/>
                             <constraint firstAttribute="trailing" secondItem="OsZ-6o-5ge" secondAttribute="trailing" id="dQI-SJ-Gxv"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="TcM-KL-gZq"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="TcM-KL-gZq" id="4Kw-JP-jkQ"/>
                         <outlet property="indexLabel" destination="OsZ-6o-5ge" id="rJG-AJ-BUh"/>
                     </connections>
                 </viewController>
