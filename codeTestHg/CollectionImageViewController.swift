@@ -11,10 +11,14 @@ import AlamofireImage
 import Alamofire
 
 
-class CollectionImageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class CollectionImageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectinView: UICollectionView!
     let hgImageDataStore: DataStore  = DataStore.sharedInstance
+    
+    private let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +34,33 @@ class CollectionImageViewController: UIViewController, UICollectionViewDataSourc
                             self.collectinView.reloadData()
             })
         }
+        
+        cellLayOutSetUP()
+        
     }
+    
+    override func viewWillLayoutSubviews () {
+        print("viewWillLayoutSubviews called")       
+
+    }
+    
+    
+    func cellLayOutSetUP () {
+        
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        let screenBound = UIScreen.mainScreen().bounds
+        let width = screenBound.size.width
+        //let height = screenBound.size.height
+        
+        layout.itemSize = CGSize(width:(width)/3, height: (width)/3)
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+  
+        collectinView.collectionViewLayout = layout
+   
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -86,5 +116,17 @@ class CollectionImageViewController: UIViewController, UICollectionViewDataSourc
         self.navigationController?.pushViewController(pageVC, animated: true)
         print("selected cell #\(indexPath.item)!")
     }
+
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.currentDevice().orientation.isLandscape.boolValue{
+            print ("landscape")
+            layout.minimumInteritemSpacing = 0
+            layout.minimumLineSpacing = 0
+            
+        } else {
+            print ("Portrait")
+        }
+    }
+    
 }
 
