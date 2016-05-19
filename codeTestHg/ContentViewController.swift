@@ -52,18 +52,16 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addGestureRecognizer(doubleTap)
         
        // progressView.setProgress(0, animated: true)
-        
         print("viewDidLoad of ContentViewController called")
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if let imageToDisplay = imageObject?.image {
-            progressView.hidden = true
             imageView.image = imageToDisplay
         } else {
             //imageView.image = UIImage(named: "PM")
-            progressBarSetUp()
+            activeProgess()
         }
     }
     
@@ -92,7 +90,6 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func progressBarSetUp () {
-        
         progressLabel.text = "0%"
         self.counter = 0
         for _ in 0..<100 {
@@ -103,6 +100,15 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
                     return
                 })
             })
+        }
+    }
+    
+    func activeProgess (){
+        if  progressView.progress == 1.0 {
+            progressView.hidden = true
+            imageView.image = imageObject!.image
+        } else {
+            progressBarSetUp()
         }
     }
 }
