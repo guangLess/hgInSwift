@@ -119,10 +119,17 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         scrollView.backgroundColor = UIColor.redColor()
         print(nativeSize)
         print(imageView.image?.size)
+        print("imageView.frame.width = \(imageView.frame.width) view.frame.width = \(view.frame.width) ")
+        
+        
+        if (nativeSize.width < view.frame.width || scrollView.contentSize.width > view.frame.width) {
+            print("scroll view goes back to fit the screen")
+            scrollView.contentSize = CGSizeMake(view.frame.width, view.frame.height)
+        } else {
         
         imageView.bounds =  CGRect (x: 0, y: 0, width: nativeSize.width, height: nativeSize.height)
-        scrollView.addSubview(imageView)
         
+        scrollView.addSubview(imageView)
         imageView.centerYAnchor.constraintEqualToAnchor(scrollView.centerYAnchor).active = true
         imageView.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor).active = true
         imageView.bottomAnchor.constraintEqualToAnchor(scrollView.bottomAnchor).active = true
@@ -130,13 +137,9 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         scrollView.contentSize = nativeSize
         imageView.contentMode = .ScaleAspectFit
         imageView.clipsToBounds = true
-        
-        
+        }
         //imageView.updateConstraints()
-        
         //self.view.layoutIfNeeded()
-        
-        
 //        print(scrollView.frame)
 //        print(view.frame)
 //
