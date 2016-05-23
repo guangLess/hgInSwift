@@ -17,8 +17,6 @@ class CollectionImageViewController: UIViewController, UICollectionViewDataSourc
     let hgImageDataStore: DataStore  = DataStore.sharedInstance
     
     private let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +32,12 @@ class CollectionImageViewController: UIViewController, UICollectionViewDataSourc
                             self.collectinView.reloadData()
             })
         }
-        
-        cellLayOutSetUP()
-        
+         cellLayOutSetUP()
     }
     
     override func viewWillLayoutSubviews () {
-        print("viewWillLayoutSubviews called")       
-
+        print("viewWillLayoutSubviews called")
     }
-    
     
     func cellLayOutSetUP () {
         
@@ -56,11 +50,9 @@ class CollectionImageViewController: UIViewController, UICollectionViewDataSourc
         layout.itemSize = CGSize(width:(width)/3, height: (width)/3)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-  
         collectinView.collectionViewLayout = layout
    
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -127,6 +119,5 @@ class CollectionImageViewController: UIViewController, UICollectionViewDataSourc
             print ("Portrait")
         }
     }
-    
 }
 

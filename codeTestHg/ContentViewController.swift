@@ -16,84 +16,79 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     
     var imageObject: ImageObject?
     var indexNumber : String = ""
+    
+    var nativeSize = CGSizeMake(0, 0)
     private var imageView = UIImageView()
+    
     private var scrollView = UIScrollView()
+    
     private var centerX: NSLayoutConstraint!
     private var centerY: NSLayoutConstraint!
     
-    var counter: Int = 0 {
-        didSet{
-        let fractionalProgress = Float(counter) / 100.0
-        let animated = counter != 0
-        progressView.setProgress(fractionalProgress, animated: animated)
-        progressLabel.text = ("\(counter)%")
-        }
-   
-    }
     
     @IBOutlet weak var indexLabel: UILabel!
-    @IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet weak var progressLabel: UILabel!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.delegate = self
-        scrollView.backgroundColor = UIColor.blueColor() //UIColor.cyanColor()
+        //scrollView.backgroundColor = UIColor.blueColor() //UIColor.cyanColor()
         scrollView.bounces = false
         
         view.addSubview(scrollView)
+        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
         scrollView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
         scrollView.leftAnchor.constraintEqualToAnchor(view.leftAnchor).active = true
         scrollView.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
         
-        scrollView.addSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.widthAnchor.constraintEqualToAnchor(scrollView.widthAnchor).active = true
-//        imageView.heightAnchor.constraintEqualToAnchor(scrollView
-//            .heightAnchor, multiplier: 0.33).active = true
-       centerX =  imageView.centerXAnchor.constraintEqualToAnchor(scrollView.centerXAnchor)
-        centerY = imageView.centerYAnchor.constraintEqualToAnchor(scrollView.centerYAnchor)
-        centerX.active = true
-        centerY.active = true
-        
-        
-        imageView.backgroundColor = UIColor.blackColor()
-        imageView.contentMode = .ScaleAspectFill
-        imageView.clipsToBounds = true
-        
+        scrollView.contentSize = CGSizeMake(view.frame.width, view.frame.height)
+
+        scrollView.maximumZoomScale = 3
+        scrollView.minimumZoomScale = 1
+
     
-        scrollView.contentSize = imageView.bounds.size
+        scrollView.addSubview(imageView)
         
-//        scrollView.maximumZoomScale = 3
-//        scrollView.minimumZoomScale = 1
         
+        imageView.topAnchor.constraintEqualToAnchor(scrollView.topAnchor).active = true
+        imageView.bottomAnchor.constraintEqualToAnchor(scrollView.bottomAnchor).active = true
+        imageView.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor).active = true
+        imageView.leadingAnchor.constraintEqualToAnchor(scrollView.leadingAnchor).active = true
+        
+        imageView.frame = CGRect(x: 10, y: 10, width: view.frame.width, height: view.frame.height)
+        
+        //centerX = imageView.centerXAnchor.constraintEqualToAnchor(scrollView.centerXAnchor)
+        //centerY = imageView.centerYAnchor.constraintEqualToAnchor(scrollView.centerYAnchor)
+        //centerX.active = true
+        //centerY.active = true
+        
+        view.addSubview(imageView)
+   
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector( doubleTapAction))
         doubleTap.numberOfTapsRequired = 2
         scrollView.addGestureRecognizer(doubleTap)
         
-       // progressView.setProgress(0, animated: true)
         print("viewDidLoad of ContentViewController called")
     }
     
     private func updateMinZoomScaleForSize(size: CGSize) {
-      
-        
+  
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 1.5
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        imageView.contentMode = .ScaleAspectFit
+        imageView.backgroundColor = UIColor.brownColor()
+
         if let imageToDisplay = imageObject?.image {
             imageView.image = imageToDisplay
-            scrollView.contentSize = imageView.bounds.size
-
-//            scrollView.contentSize = CGSizeMake(imageView.frame.width, imageView.frame.height) // set it at first and then tap to move it
-            print("content size of scrollView: \(scrollView.contentSize)")
+            nativeSize = CGSize(width: imageToDisplay.size.width, height: imageToDisplay.size.height)
+            //scrollView.contentSize = nativeSize
+             print (nativeSize)
 
         } else {
             imageView.image = UIImage(named: "PM")
@@ -121,54 +116,44 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     
     func doubleTapAction() {
         print ("image Tapped")
+        scrollView.backgroundColor = UIColor.redColor()
+        print(nativeSize)
+        print(imageView.image?.size)
         
-//        scrollView.backgroundColor = UIColor.redColor()
+        imageView.bounds =  CGRect (x: 0, y: 0, width: nativeSize.width, height: nativeSize.height)
+        scrollView.addSubview(imageView)
+        
+        imageView.centerYAnchor.constraintEqualToAnchor(scrollView.centerYAnchor).active = true
+        imageView.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor).active = true
+        imageView.bottomAnchor.constraintEqualToAnchor(scrollView.bottomAnchor).active = true
+        imageView.leadingAnchor.constraintEqualToAnchor(scrollView.leadingAnchor).active = true
+        scrollView.contentSize = nativeSize
+        imageView.contentMode = .ScaleAspectFit
+        imageView.clipsToBounds = true
+        
+        
+        //imageView.updateConstraints()
+        
+        //self.view.layoutIfNeeded()
+        
+        
 //        print(scrollView.frame)
 //        print(view.frame)
-        
-        if scrollView.zoomScale > 1.0 {
-            
-            UIView.animateWithDuration(0.3, animations: { _ in
-                
-                self.centerY.constant = 0.0
-                self.scrollView.setZoomScale(1.0, animated: true)
-
-                self.view.layoutIfNeeded()
-
-                }, completion: { _ in
-
-            })
-            
-            
-            
-        } else {
-            UIView.animateWithDuration(0.3, animations: { _ in
-                
-                self.centerY.constant = -30.0
-                self.scrollView.setZoomScale(2.5, animated: true)
-
-                self.view.layoutIfNeeded()
-
-                
-                }, completion: { _ in
-                    
-            })
-            
-
-            
-        }
 //
 //        if (scrollView.zoomScale > 1.0) {
 //            scrollView.setZoomScale(0.25, animated: true)
+//            scrollView.contentSize = nativeSize
+//            self.view.layoutIfNeeded()
+//
 //        } else {
 //            scrollView.setZoomScale(2, animated: true)
+//            scrollView.contentSize = nativeSize
+//           self.view.layoutIfNeeded()
 //        }
     }
     
     private func updateConstraintsForSize(size: CGSize) {
-        
-        
-        
+       
 //        let yOffset = max(0, (size.height - imageView.frame.height) / 2)
 //        imageViewTopConstraint.constant = yOffset
 //        imageViewBottomConstraint.constant = yOffset
@@ -179,7 +164,7 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
 //        
 //        view.layoutIfNeeded()
     }
-    
+/*
     func progressBarSetUp () {
         progressLabel.text = "0%"
         self.counter = 0
@@ -202,4 +187,6 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
             progressBarSetUp()
         }
     }
+ 
+ */
 }
