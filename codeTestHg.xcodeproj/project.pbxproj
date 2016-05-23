@@ -21,6 +21,7 @@
 		62064B3E1CBFDCEB005ABCC4 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62064B3C1CBFDCEB005ABCC4 /* PageViewController.swift */; };
 		62064B3F1CBFDCEB005ABCC4 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62064B3D1CBFDCEB005ABCC4 /* ContentViewController.swift */; };
 		624C025F1CEB704A009F90B3 /* Screen Shot 2016-03-07 at 4.15.34 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = 624C025E1CEB704A009F90B3 /* Screen Shot 2016-03-07 at 4.15.34 PM.png */; };
+		624C02D51CF0B87E009F90B3 /* Sound-yoga (1).jpg in Resources */ = {isa = PBXBuildFile; fileRef = 624C02D41CF0B87E009F90B3 /* Sound-yoga (1).jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		62064B3C1CBFDCEB005ABCC4 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		62064B3D1CBFDCEB005ABCC4 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		624C025E1CEB704A009F90B3 /* Screen Shot 2016-03-07 at 4.15.34 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2016-03-07 at 4.15.34 PM.png"; sourceTree = "<group>"; };
+		624C02D41CF0B87E009F90B3 /* Sound-yoga (1).jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Sound-yoga (1).jpg"; sourceTree = "<group>"; };
 		A298D3F738730FB66F6069E6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA880F84CF6415E0EF60A656 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D9B22007B98D955DA08D740F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				62064B3C1CBFDCEB005ABCC4 /* PageViewController.swift */,
 				62064B3D1CBFDCEB005ABCC4 /* ContentViewController.swift */,
 				62064AC51CB83E6F005ABCC4 /* Assets.xcassets */,
+				624C02D41CF0B87E009F90B3 /* Sound-yoga (1).jpg */,
 				624C025E1CEB704A009F90B3 /* Screen Shot 2016-03-07 at 4.15.34 PM.png */,
 				62064AC71CB83E6F005ABCC4 /* LaunchScreen.storyboard */,
 				62064ACA1CB83E6F005ABCC4 /* Info.plist */,
@@ -275,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62064AC91CB83E6F005ABCC4 /* LaunchScreen.storyboard in Resources */,
+				624C02D51CF0B87E009F90B3 /* Sound-yoga (1).jpg in Resources */,
 				624C025F1CEB704A009F90B3 /* Screen Shot 2016-03-07 at 4.15.34 PM.png in Resources */,
 				62064AC61CB83E6F005ABCC4 /* Assets.xcassets in Resources */,
 				62064AC41CB83E6F005ABCC4 /* Main.storyboard in Resources */,
