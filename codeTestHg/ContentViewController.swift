@@ -27,48 +27,47 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     
     
     @IBOutlet weak var indexLabel: UILabel!
-
+    @IBOutlet weak var fittedImageView: UIImageView!
+    
+    private var fittedImage: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.delegate = self
         //scrollView.backgroundColor = UIColor.blueColor() //UIColor.cyanColor()
-        scrollView.bounces = false
+        //scrollView.bounces = false
         
         view.addSubview(scrollView)
         
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        //scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
         scrollView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
         scrollView.leftAnchor.constraintEqualToAnchor(view.leftAnchor).active = true
         scrollView.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
-        
-        scrollView.contentSize = CGSizeMake(view.frame.width, view.frame.height)
+        //scrollView.contentSize = CGSizeMake(view.frame.width, view.frame.height)
 
         scrollView.maximumZoomScale = 3
         scrollView.minimumZoomScale = 1
 
     
         scrollView.addSubview(imageView)
+ 
         
-        
+        view.addSubview(imageView)
+
         imageView.topAnchor.constraintEqualToAnchor(scrollView.topAnchor).active = true
         imageView.bottomAnchor.constraintEqualToAnchor(scrollView.bottomAnchor).active = true
         imageView.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor).active = true
         imageView.leadingAnchor.constraintEqualToAnchor(scrollView.leadingAnchor).active = true
-        
         imageView.frame = CGRect(x: 10, y: 10, width: view.frame.width, height: view.frame.height)
         
-        //centerX = imageView.centerXAnchor.constraintEqualToAnchor(scrollView.centerXAnchor)
-        //centerY = imageView.centerYAnchor.constraintEqualToAnchor(scrollView.centerYAnchor)
-        //centerX.active = true
-        //centerY.active = true
+        //imageView.hidden = true
         
-        view.addSubview(imageView)
-   
+        
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector( doubleTapAction))
         doubleTap.numberOfTapsRequired = 2
-        scrollView.addGestureRecognizer(doubleTap)
+        view.addGestureRecognizer(doubleTap)
         
         print("viewDidLoad of ContentViewController called")
     }
@@ -86,19 +85,23 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
 
         if let imageToDisplay = imageObject?.image {
             imageView.image = imageToDisplay
-            nativeSize = CGSize(width: imageToDisplay.size.width, height: imageToDisplay.size.height)
-            //scrollView.contentSize = nativeSize
+             nativeSize = CGSize(width: imageToDisplay.size.width, height: imageToDisplay.size.height)
              print (nativeSize)
+            
+            fittedImageView.image = imageToDisplay
+
 
         } else {
             imageView.image = UIImage(named: "PM")
-            //activeProgess()
+            fittedImageView.image = UIImage(named: "PM")
+
         }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        updateMinZoomScaleForSize(view.bounds.size)
+        
+        //updateMinZoomScaleForSize(view.bounds.size)
 
 //        scrollView.frame = view.bounds
  //       imageView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height)
@@ -115,29 +118,56 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func doubleTapAction() {
-        print ("image Tapped")
-        scrollView.backgroundColor = UIColor.redColor()
-        print(nativeSize)
-        print(imageView.image?.size)
-        print("imageView.frame.width = \(imageView.frame.width) view.frame.width = \(view.frame.width) ")
+//        print ("image Tapped")
+//        scrollView.backgroundColor = UIColor.redColor()
+//        print(nativeSize)
+//        print(imageView.image?.size)
+//        print("imageView.frame.width = \(imageView.frame.width) view.frame.width = \(view.frame.width) ")
+  
+        //if (scrollView.contentSize == nativeSize)
         
         
-        if (nativeSize.width < view.frame.width || scrollView.contentSize.width > view.frame.width) {
-            print("scroll view goes back to fit the screen")
-            scrollView.contentSize = CGSizeMake(view.frame.width, view.frame.height)
+        if (nativeSize.width < view.frame.width || scrollView.contentSize == nativeSize) {
+            print("scroll view is already enlarged, the user do not need to see the bad picture, or ")
+//            scrollView.contentSize = CGSizeMake(view.frame.width, view.frame.height)
+//            
+//            
+//            imageView.contentMode = .ScaleAspectFit
+//            imageView.backgroundColor = UIColor.brownColor()
+//            scrollView.addSubview(imageView)
+            //view.addSubview(imageView)
+            //view.contentMode = .ScaleAspectFit
+            //imageView.hidden = true
+            //scrollView.hidden = true
+            //fittedImageView.image = fittedImage
         } else {
-        
-        imageView.bounds =  CGRect (x: 0, y: 0, width: nativeSize.width, height: nativeSize.height)
-        
-        scrollView.addSubview(imageView)
+//        fittedImageView.hidden = true
+//            
+//         scrollView.hidden = false
+//         imageView.hidden = false
+            
+        scrollView.addSubview(imageView) // before
+        //scrollView.contentSize = nativeSize
+
         imageView.centerYAnchor.constraintEqualToAnchor(scrollView.centerYAnchor).active = true
         imageView.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor).active = true
         imageView.bottomAnchor.constraintEqualToAnchor(scrollView.bottomAnchor).active = true
         imageView.leadingAnchor.constraintEqualToAnchor(scrollView.leadingAnchor).active = true
+
+        imageView.frame =  CGRect (x: 0, y:(self.navigationController?.navigationBar.frame.height)!
+, width: nativeSize.width, height: nativeSize.height)
+        
         scrollView.contentSize = nativeSize
-        imageView.contentMode = .ScaleAspectFit
-        imageView.clipsToBounds = true
+        scrollView.frame = CGRect(x: 0, y: 0, width: nativeSize.width, height: nativeSize.height)
+
+        scrollView.bounces = true
+        //scrollView.addSubview(imageView) // before
+
+        //imageView.contentMode = .ScaleAspectFit
+        //imageView.clipsToBounds = true
+        
         }
+        
         //imageView.updateConstraints()
         //self.view.layoutIfNeeded()
 //        print(scrollView.frame)
@@ -157,39 +187,8 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     
     private func updateConstraintsForSize(size: CGSize) {
        
-//        let yOffset = max(0, (size.height - imageView.frame.height) / 2)
-//        imageViewTopConstraint.constant = yOffset
-//        imageViewBottomConstraint.constant = yOffset
-//        
-//        let xOffset = max(0, (size.width - imageView.frame.width) / 2)
-//        imageViewLeadingConstraint.constant = xOffset
-//        imageViewTrailingConstraint.constant = xOffset
 //        
 //        view.layoutIfNeeded()
     }
-/*
-    func progressBarSetUp () {
-        progressLabel.text = "0%"
-        self.counter = 0
-        for _ in 0..<100 {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
-                sleep(1)
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.counter+=1
-                    return
-                })
-            })
-        }
-    }
-    
-    func activeProgess (){
-        if  progressView.progress == 1.0 {
-            progressView.hidden = true
-            imageView.image = imageObject!.image
-        } else {
-            progressBarSetUp()
-        }
-    }
- 
- */
+
 }
