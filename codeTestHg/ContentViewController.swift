@@ -98,24 +98,16 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        //updateMinZoomScaleForSize(view.bounds.size)
-
-//        scrollView.frame = view.bounds
- //       imageView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height)
-    }
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//    }
     
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        return imageView
-    }
-    
-    func scrollViewDidZoom(scrollView: UIScrollView) {
-
-        //self.imageView.contentMode = .Center
-        //scrollView.contentInset = UIEdgeInsetsZero;
-    }
+//    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+//        return imageView
+//    }
+//    
+//    func scrollViewDidZoom(scrollView: UIScrollView) {
+//    }
     
     func doubleTapAction() {
 //        print ("image Tapped")
@@ -127,20 +119,19 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         //if (scrollView.contentSize == nativeSize)
         
         
-        if (nativeSize.width < view.frame.width || scrollView.contentSize == nativeSize) {
+        if (nativeSize.width < view.frame.width) {
             print("scroll view is already enlarged, the user do not need to see the bad picture, or ")
-//            scrollView.contentSize = CGSizeMake(view.frame.width, view.frame.height)
-//            
-//            
-//            imageView.contentMode = .ScaleAspectFit
-//            imageView.backgroundColor = UIColor.brownColor()
-//            scrollView.addSubview(imageView)
-            //view.addSubview(imageView)
-            //view.contentMode = .ScaleAspectFit
-            //imageView.hidden = true
-            //scrollView.hidden = true
-            //fittedImageView.image = fittedImage
-        } else {
+            
+
+        } else if (scrollView.contentSize == nativeSize ) {
+            
+            scrollView.hidden = true
+            fittedImageView.hidden = false
+            
+        }
+        
+        
+        else {
 //        fittedImageView.hidden = true
 //            
 //         scrollView.hidden = false
@@ -164,34 +155,14 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         scrollView.contentSize = nativeSize
 
         scrollView.bounces = true
-        //scrollView.addSubview(imageView) // before
 
-        //imageView.contentMode = .ScaleAspectFit
-        //imageView.clipsToBounds = true
-        
         }
         
-        //imageView.updateConstraints()
-        //self.view.layoutIfNeeded()
-//        print(scrollView.frame)
-//        print(view.frame)
-//
-//        if (scrollView.zoomScale > 1.0) {
-//            scrollView.setZoomScale(0.25, animated: true)
-//            scrollView.contentSize = nativeSize
-//            self.view.layoutIfNeeded()
-//
-//        } else {
-//            scrollView.setZoomScale(2, animated: true)
-//            scrollView.contentSize = nativeSize
-//           self.view.layoutIfNeeded()
-//        }
+
     }
     
     private func updateConstraintsForSize(size: CGSize) {
-       
-//        
-//        view.layoutIfNeeded()
+
     }
 
 }
