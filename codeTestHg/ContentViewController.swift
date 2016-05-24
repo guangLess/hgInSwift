@@ -51,7 +51,7 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         scrollView.minimumZoomScale = 1
 
     
-        scrollView.addSubview(imageView)
+        //scrollView.addSubview(imageView)
  
         
         view.addSubview(imageView)
@@ -149,16 +149,19 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(imageView) // before
         //scrollView.contentSize = nativeSize
 
+        imageView.frame =  CGRect (x: 0, y:(self.navigationController?.navigationBar.frame.height)!
+                , width: nativeSize.width, height: nativeSize.height)
+            
         imageView.centerYAnchor.constraintEqualToAnchor(scrollView.centerYAnchor).active = true
         imageView.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor).active = true
         imageView.bottomAnchor.constraintEqualToAnchor(scrollView.bottomAnchor).active = true
         imageView.leadingAnchor.constraintEqualToAnchor(scrollView.leadingAnchor).active = true
 
-        imageView.frame =  CGRect (x: 0, y:(self.navigationController?.navigationBar.frame.height)!
-, width: nativeSize.width, height: nativeSize.height)
-        
+
+        //scrollView.frame = CGRect(x: 0, y: 0, width: nativeSize.width, height: nativeSize.height)
+            scrollView.frame = CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)!, width: view.frame.width, height: view.frame.height)
+
         scrollView.contentSize = nativeSize
-        scrollView.frame = CGRect(x: 0, y: 0, width: nativeSize.width, height: nativeSize.height)
 
         scrollView.bounces = true
         //scrollView.addSubview(imageView) // before

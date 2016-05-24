@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "codeTestHg/ContentViewController.swift"
-            timestampString = "485808938.392016"
+            timestampString = "485809489.078088"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "doubleTapAction()"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "codeTestHg/ContentViewController.swift"
-            timestampString = "485809240.32639"
+            timestampString = "485810058.841148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "doubleTapAction()"
             landmarkType = "5">
          </BreakpointContent>
