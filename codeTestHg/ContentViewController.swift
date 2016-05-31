@@ -12,6 +12,9 @@ import UIKit
 /*
  scrollview delegate. check.  page should know the size of the image before it passes to the content.
  */
+
+//FIXME: tap to enlarge the image. clean code. Add save function
+
 class ContentViewController: UIViewController, UIScrollViewDelegate {
     
     var imageObject: ImageObject?
@@ -37,7 +40,8 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         scrollView.delegate = self
         //scrollView.backgroundColor = UIColor.blueColor() //UIColor.cyanColor()
         //scrollView.bounces = false
-        
+    
+    //FIXME: put into helpper method
         view.addSubview(scrollView)
         
         //scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,9 +91,7 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
             imageView.image = imageToDisplay
              nativeSize = CGSize(width: imageToDisplay.size.width, height: imageToDisplay.size.height)
              print (nativeSize)
-            
             fittedImageView.image = imageToDisplay
-
 
         } else {
             imageView.image = UIImage(named: "PM")
@@ -120,10 +122,11 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         
         
         if (nativeSize.width < view.frame.width) {
+        //if ( fittedImageView.hidden == true ){
             print("scroll view is already enlarged, the user do not need to see the bad picture, or ")
             
 
-        } else if (scrollView.contentSize == nativeSize ) {
+        } else if (imageView.bounds.width > view.frame.size.width ) {
             
             scrollView.hidden = true
             fittedImageView.hidden = false
@@ -163,6 +166,12 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     
     private func updateConstraintsForSize(size: CGSize) {
 
+    }
+    
+    public func saveImageOnThisContentView () {
+        if let savedImage = imageView.image {
+        HgPhotoAlbumCustomlized.sharedInstance.saveImage(savedImage)
+        }
     }
 
 }

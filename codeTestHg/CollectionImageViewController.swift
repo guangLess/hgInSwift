@@ -10,6 +10,8 @@ import UIKit
 import AlamofireImage
 import Alamofire
 
+import PhotosUI
+
 
 class CollectionImageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -33,7 +35,27 @@ class CollectionImageViewController: UIViewController, UICollectionViewDataSourc
             })
         }
          cellLayOutSetUP()
+        
+//        let saveImageClass = SaveImageFromApp()
+//        saveImageClass.status()
+        //checkPhotoLibraryStatus()
+        
+
     }
+    
+    
+    func checkPhotoLibraryStatus () {
+        
+        if PHPhotoLibrary.authorizationStatus() == .Authorized {
+            print("Authorized")
+        } else {
+            PHPhotoLibrary.requestAuthorization({ (PHAuthorizationStatus) in
+                print ("need to authorize")
+            })
+        }
+    }
+    
+
     
     override func viewWillLayoutSubviews () {
         print("viewWillLayoutSubviews called")
