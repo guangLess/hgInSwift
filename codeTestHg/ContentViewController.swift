@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Photos
+
+import AssetsLibrary
 
 
 /*
@@ -168,9 +171,29 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
 
     }
     
-    public func saveImageOnThisContentView () {
-        if let savedImage = imageView.image {
-        HgPhotoAlbumCustomlized.sharedInstance.saveImage(savedImage)
+    func saveImageOnThisContentView () {
+    
+        let img = UIImage(named: "PM")
+        let library = ALAssetsLibrary()
+        library.writeImageToSavedPhotosAlbum(<#T##imageRef: CGImage!##CGImage!#>, metadata: <#T##[NSObject : AnyObject]!#>, completionBlock: <#T##ALAssetsLibraryWriteImageCompletionBlock!##ALAssetsLibraryWriteImageCompletionBlock!##(NSURL!, NSError!) -> Void#>)
+        
+//        let createAssetRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(image)
+//        let assetPlaceholder = createAssetRequest.placeholderForCreatedAsset
+//        let albumChangeRequest = PHAssetCollectionChangeRequest(forAssetCollection: album)
+//        albumChangeRequest.addAssets([assetPlaceholder])
+        
+        
+    }
+    
+     func imageSaved(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafePointer<Void>) {
+        if error == nil {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .Alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            presentViewController(ac, animated: true, completion: nil)
+        } else {
+            let ac = UIAlertController(title: "Save error", message: error?.localizedDescription, preferredStyle: .Alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            presentViewController(ac, animated: true, completion: nil)
         }
     }
 
