@@ -173,14 +173,26 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     
     func saveImageOnThisContentView () {
     
-        let img = UIImage(named: "PM")
-        let library = ALAssetsLibrary()
-        library.writeImageToSavedPhotosAlbum(<#T##imageRef: CGImage!##CGImage!#>, metadata: <#T##[NSObject : AnyObject]!#>, completionBlock: <#T##ALAssetsLibraryWriteImageCompletionBlock!##ALAssetsLibraryWriteImageCompletionBlock!##(NSURL!, NSError!) -> Void#>)
+//        let img = UIImage(named: "PM")
+//        let library = ALAssetsLibrary()
+//        library.writeImageToSavedPhotosAlbum(<#T##imageRef: CGImage!##CGImage!#>, metadata: <#T##[NSObject : AnyObject]!#>, completionBlock: <#T##ALAssetsLibraryWriteImageCompletionBlock!##ALAssetsLibraryWriteImageCompletionBlock!##(NSURL!, NSError!) -> Void#>)
         
 //        let createAssetRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(image)
 //        let assetPlaceholder = createAssetRequest.placeholderForCreatedAsset
 //        let albumChangeRequest = PHAssetCollectionChangeRequest(forAssetCollection: album)
 //        albumChangeRequest.addAssets([assetPlaceholder])
+        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ 
+            let createAlbumeRequest = PHAssetCollectionChangeRequest()
+            PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle("hello world")
+            //createAlbumeRequest.title = "Hello world"
+            var placeHolder = PHObjectPlaceholder()
+            placeHolder = createAlbumeRequest.placeholderForCreatedAssetCollection
+            }) { (Bool, error) in
+                print ("error")
+        }
+        
+
+        
         
         
     }
