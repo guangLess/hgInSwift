@@ -8,7 +8,7 @@
 
 import UIKit
 import Photos
-
+//TODO: use the AssetsLibrary to just the creat the album and then share extention for share and text etc.
 import AssetsLibrary
 
 
@@ -23,63 +23,46 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     var imageObject: ImageObject?
     var indexNumber : String = ""
     
+    private var scrollView = UIScrollView()
+
     var nativeSize = CGSizeMake(0, 0)
     private var imageView = UIImageView()
     
-    private var scrollView = UIScrollView()
-    
-    private var centerX: NSLayoutConstraint!
-    private var centerY: NSLayoutConstraint!
-    
+    //private var centerX: NSLayoutConstraint!
+    //private var centerY: NSLayoutConstraint!
     
     @IBOutlet weak var indexLabel: UILabel!
-    @IBOutlet weak var fittedImageView: UIImageView!
-    
     private var fittedImage: UIImage!
-    
+
+    @IBOutlet weak var fittedImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         scrollView.delegate = self
-        //scrollView.backgroundColor = UIColor.blueColor() //UIColor.cyanColor()
-        //scrollView.bounces = false
     
     //FIXME: put into helpper method
         view.addSubview(scrollView)
-        
-        //scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
-        scrollView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
-        scrollView.leftAnchor.constraintEqualToAnchor(view.leftAnchor).active = true
-        scrollView.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
-        //scrollView.contentSize = CGSizeMake(view.frame.width, view.frame.height)
-
-        scrollView.maximumZoomScale = 3
-        scrollView.minimumZoomScale = 1
-
-    
-        //scrollView.addSubview(imageView)
- 
-        
         view.addSubview(imageView)
+        
+        setImageViewConstrainsWhenLoad(view.frame.width, h: view.frame.height)
+        fittedImageView.hidden = true
+        
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTapAction))
+        doubleTap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(doubleTap)
+        //print("viewDidLoad of ContentViewController called")
+    }
 
+    private func setImageViewConstrainsWhenLoad ( w: CGFloat, h: CGFloat) {
+        
         imageView.topAnchor.constraintEqualToAnchor(scrollView.topAnchor).active = true
         imageView.bottomAnchor.constraintEqualToAnchor(scrollView.bottomAnchor).active = true
         imageView.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor).active = true
         imageView.leadingAnchor.constraintEqualToAnchor(scrollView.leadingAnchor).active = true
-        imageView.frame = CGRect(x: 10, y: 10, width: view.frame.width, height: view.frame.height)
-        
-        //imageView.hidden = true
-        
-        //fittedImageView.hidden = true
-        imageView.hidden = true
-        
-        let doubleTap = UITapGestureRecognizer(target: self, action: #selector( doubleTapAction))
-        doubleTap.numberOfTapsRequired = 2
-        view.addGestureRecognizer(doubleTap)
-        
-        print("viewDidLoad of ContentViewController called")
+        //imageView.frame = CGRect(x: 10, y: 10, width: view.frame.width, height: view.frame.height)
+        imageView.frame = CGRect(x: 0, y: 10, width: w , height: h)
+
+        //imageView.frame =  CGRect (x: 0, y:(self.navigationController?.navigationBar.frame.height)!, width: nativeSize.width, height: nativeSize.height)
     }
     
     private func updateMinZoomScaleForSize(size: CGSize) {
@@ -134,8 +117,6 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
             scrollView.hidden = true
             fittedImageView.hidden = false
         }
-        
-        
         else {
 //        fittedImageView.hidden = true
 //            
@@ -145,21 +126,18 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(imageView) // before
         //scrollView.contentSize = nativeSize
 
-        imageView.frame =  CGRect (x: 0, y:(self.navigationController?.navigationBar.frame.height)!
-                , width: nativeSize.width, height: nativeSize.height)
-        imageView.centerYAnchor.constraintEqualToAnchor(scrollView.centerYAnchor).active = true
-        imageView.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor).active = true
-        imageView.bottomAnchor.constraintEqualToAnchor(scrollView.bottomAnchor).active = true
-        imageView.leadingAnchor.constraintEqualToAnchor(scrollView.leadingAnchor).active = true
-
-
-        //scrollView.frame = CGRect(x: 0, y: 0, width: nativeSize.width, height: nativeSize.height)
-            scrollView.frame = CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)!, width: view.frame.width, height: view.frame.height)
-
+//        imageView.frame =  CGRect (x: 0, y:(self.navigationController?.navigationBar.frame.height)!
+//                , width: nativeSize.width, height: nativeSize.height)
+//       // imageView.centerYAnchor.constraintEqualToAnchor(scrollView.centerYAnchor).active = true
+//        imageView.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor).active = true
+//        imageView.bottomAnchor.constraintEqualToAnchor(scrollView.bottomAnchor).active = true
+//        imageView.leadingAnchor.constraintEqualToAnchor(scrollView.leadingAnchor).active = true
+        
+        setImageViewConstrainsWhenLoad(nativeSize.width, h: nativeSize.height)
+        scrollView.frame = CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)!, width: view.frame.width, height: view.frame.height)
         scrollView.contentSize = nativeSize
-
         scrollView.bounces = true
-
+            
         }
     }
     
