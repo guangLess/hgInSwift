@@ -37,6 +37,7 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     
     private var fittedImage: UIImage!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,6 +72,8 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         
         //imageView.hidden = true
         
+        //fittedImageView.hidden = true
+        imageView.hidden = true
         
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector( doubleTapAction))
         doubleTap.numberOfTapsRequired = 2
@@ -99,7 +102,6 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         } else {
             imageView.image = UIImage(named: "PM")
             fittedImageView.image = UIImage(named: "PM")
-
         }
     }
     
@@ -127,13 +129,10 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         if (nativeSize.width < view.frame.width) {
         //if ( fittedImageView.hidden == true ){
             print("scroll view is already enlarged, the user do not need to see the bad picture, or ")
-            
 
         } else if (imageView.bounds.width > view.frame.size.width ) {
-            
             scrollView.hidden = true
             fittedImageView.hidden = false
-            
         }
         
         
@@ -148,7 +147,6 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
 
         imageView.frame =  CGRect (x: 0, y:(self.navigationController?.navigationBar.frame.height)!
                 , width: nativeSize.width, height: nativeSize.height)
-            
         imageView.centerYAnchor.constraintEqualToAnchor(scrollView.centerYAnchor).active = true
         imageView.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor).active = true
         imageView.bottomAnchor.constraintEqualToAnchor(scrollView.bottomAnchor).active = true
@@ -163,24 +161,13 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         scrollView.bounces = true
 
         }
-        
-
     }
     
     private func updateConstraintsForSize(size: CGSize) {
-
     }
     
     func saveImageOnThisContentView () {
-    
-//        let img = UIImage(named: "PM")
-//        let library = ALAssetsLibrary()
-//        library.writeImageToSavedPhotosAlbum(<#T##imageRef: CGImage!##CGImage!#>, metadata: <#T##[NSObject : AnyObject]!#>, completionBlock: <#T##ALAssetsLibraryWriteImageCompletionBlock!##ALAssetsLibraryWriteImageCompletionBlock!##(NSURL!, NSError!) -> Void#>)
-        
-//        let createAssetRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(image)
-//        let assetPlaceholder = createAssetRequest.placeholderForCreatedAsset
-//        let albumChangeRequest = PHAssetCollectionChangeRequest(forAssetCollection: album)
-//        albumChangeRequest.addAssets([assetPlaceholder])
+
         PHPhotoLibrary.sharedPhotoLibrary().performChanges({ 
             let createAlbumeRequest = PHAssetCollectionChangeRequest()
             PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle("hello world")
@@ -190,23 +177,37 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
             }) { (Bool, error) in
                 print ("error")
         }
-        
-
-        
-        
-        
     }
-    
-     func imageSaved(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafePointer<Void>) {
-        if error == nil {
-            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .Alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(ac, animated: true, completion: nil)
-        } else {
-            let ac = UIAlertController(title: "Save error", message: error?.localizedDescription, preferredStyle: .Alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(ac, animated: true, completion: nil)
+ /*
+    func addImageToAlbum (saveImage : UIImage) {
+        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ 
+            PHAssetChangeRequest.creationRequestForAssetFromImage(saveImage)
+            let assetRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(saveImage)
+
+            
+//            PHAssetCollectionChangeRequest.
+//            
+//        }) { (<#Bool#>, <#NSError?#>) in
+//                <#code#>
         }
     }
-
+*/
+    
+    
+    @IBAction func shareButtonTest(sender: AnyObject) {
+        
+        print ("button share called")
+        let string: String = "hello"
+        let URL: NSURL = NSURL(string:"www.google.com")!
+        
+        let activityViewController = UIActivityViewController(activityItems: [string, URL], applicationActivities: nil)
+        activityViewController.excludedActivityTypes = [UIActivityTypePostToTwitter, UIActivityTypePostToFacebook, UIActivityTypeSaveToCameraRoll, UIActivityTypeMessage]
+        
+        navigationController?.presentViewController(activityViewController, animated: true) {
+            // ...
+        }
+        
+        
+    
+    }
 }
