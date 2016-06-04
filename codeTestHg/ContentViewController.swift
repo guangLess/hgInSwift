@@ -171,21 +171,16 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     }
 */
     
-    
     @IBAction func shareButtonTest(sender: AnyObject) {
-        
+
         print ("button share called")
-        let string: String = "hello"
-        let URL: NSURL = NSURL(string:"www.google.com")!
-        
-        let activityViewController = UIActivityViewController(activityItems: [string, URL], applicationActivities: nil)
-        activityViewController.excludedActivityTypes = [UIActivityTypePostToTwitter, UIActivityTypePostToFacebook, UIActivityTypeSaveToCameraRoll, UIActivityTypeMessage]
-        
-        navigationController?.presentViewController(activityViewController, animated: true) {
+
+        let shareImage = UIImage(named: "PM")!
+        let imageVC = UIActivityViewController(activityItems: [shareImage], applicationActivities: [])
+        //activityViewController.excludedActivityTypes = [ UIActivityTypePostToTwitter]
+        // activityViewController.excludedActivityTypes = [UIActivityTypePostToTwitter, UIActivityTypePostToFacebook, UIActivityTypeSaveToCameraRoll, UIActivityTypeMessage]
+        navigationController?.presentViewController(imageVC, animated: true) {
             // ...
         }
-        
-        
-    
     }
 }

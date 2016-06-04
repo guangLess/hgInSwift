@@ -97,6 +97,38 @@
             endingLineNumber = "145"
             landmarkName = "checkPhotoLibraryStatus()"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "codeTestHg.PageViewController.checkPhotoLibraryStatus () -&gt; Swift.Bool"
+                  moduleName = "codeTestHg"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guang/Documents/swiftie/codeTestHg/codeTestHg/PageViewController.swift"
+                  timestampString = "486746262.18736"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "972">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "codeTestHg.PageViewController.(checkPhotoLibraryStatus () -&gt; Swift.Bool).(closure #1)"
+                  moduleName = "codeTestHg"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guang/Documents/swiftie/codeTestHg/codeTestHg/PageViewController.swift"
+                  timestampString = "486746262.187488"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "176">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -132,39 +164,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "codeTestHg/ContentViewController.swift"
-            timestampString = "486588679.176504"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "doubleTapAction()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "codeTestHg/ContentViewController.swift"
-            timestampString = "486588679.176504"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "doubleTapAction()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "codeTestHg/ContentViewController.swift"
@@ -173,7 +173,23 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
             endingLineNumber = "63"
-            landmarkName = "setImageViewConstrainsWhenLoad(_:)"
+            landmarkName = "setImageViewConstrainsWhenLoad(_:h:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "codeTestHg/ContentViewController.swift"
+            timestampString = "486747305.852932"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "shareButtonTest(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
