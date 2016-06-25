@@ -24,13 +24,11 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     var indexNumber : String = ""
     
     private var scrollView = UIScrollView()
-
     var nativeSize = CGSizeMake(0, 0)
     private var imageView = UIImageView()
     
     @IBOutlet weak var indexLabel: UILabel!
     private var fittedImage: UIImage!
-
     @IBOutlet weak var fittedImageView: UIImageView!
 
     override func viewDidLoad() {
@@ -65,7 +63,6 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     }
     
     private func updateMinZoomScaleForSize(size: CGSize) {
-  
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 1.5
     }
@@ -80,7 +77,6 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
              nativeSize = CGSize(width: imageToDisplay.size.width, height: imageToDisplay.size.height)
              print (nativeSize)
             fittedImageView.image = imageToDisplay
-
         } else {
             imageView.image = UIImage(named: "PM")
             fittedImageView.image = UIImage(named: "PM")
@@ -144,8 +140,7 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func saveImageOnThisContentView () {
-
-        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ 
+        PHPhotoLibrary.sharedPhotoLibrary().performChanges({
             let createAlbumeRequest = PHAssetCollectionChangeRequest()
             PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle("hello world")
             //createAlbumeRequest.title = "Hello world"
@@ -170,23 +165,21 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     }
 */
     
-    @IBAction func shareButtonTest(sender: AnyObject) {
-
-        print ("button share called")
-
-        
-        //let shareImage = UIImage(named: "PM")!
-        if let shareImage = imageView.image {
-        let imageVC = UIActivityViewController(activityItems: [shareImage], applicationActivities: [])
-        //activityViewController.excludedActivityTypes = [ UIActivityTypePostToTwitter]
-        // activityViewController.excludedActivityTypes = [UIActivityTypePostToTwitter, UIActivityTypePostToFacebook, UIActivityTypeSaveToCameraRoll, UIActivityTypeMessage]
-        navigationController?.presentViewController(imageVC, animated: true) {
-            // add alertview
-        }
-           // self.popUpSavedView()
-
-        }
-    }
+//    @IBAction func shareButtonTest(sender: AnyObject) {
+//
+//        print ("button share called")
+//    //let shareImage = UIImage(named: "PM")!
+//        if let shareImage = imageView.image {
+//        let imageVC = UIActivityViewController(activityItems: [shareImage], applicationActivities: [])
+//        //activityViewController.excludedActivityTypes = [ UIActivityTypePostToTwitter]
+//        // activityViewController.excludedActivityTypes = [UIActivityTypePostToTwitter, UIActivityTypePostToFacebook, UIActivityTypeSaveToCameraRoll, UIActivityTypeMessage]
+//        navigationController?.presentViewController(imageVC, animated: true) {
+//            // add alertview
+//        }
+//           // self.popUpSavedView()
+//
+//        }
+//    }
     
     @IBOutlet weak var popUpViewBottomConstrain: NSLayoutConstraint!
     @IBOutlet weak var popUpView: UILabel!

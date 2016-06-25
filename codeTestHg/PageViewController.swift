@@ -17,7 +17,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
    // let colors = [UIColor.whiteColor, UIColor.purpleColor, UIColor.greenColor]
    // let pageTitles = ["Hi", "✦", "◉"]
     var imageIndex = 0
-    
     var imageObjects = [ImageObject]() {
         didSet {
             if !orderedViewControllers.isEmpty {
@@ -32,8 +31,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     var orderedViewControllers = [ContentViewController]()
     var currentIndex : Int = 0
     var tappedCellIndex : Int = 0
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,8 +42,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         let aVC = orderedViewControllers[tappedCellIndex]
         self.setViewControllers([aVC], direction: .Forward, animated: true, completion: nil)
         showIndexAtNavVC()
-        //UIPageViewControllerOptionInterPageSpacingKey
-        
     }
     
     func newContentVC(imageObject imageObject: ImageObject) -> ContentViewController {
@@ -65,16 +61,13 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         guard let viewControllerIndex = orderedViewControllers.indexOf(viewController as! ContentViewController) else {
             return nil
         }
-        
         let previousIndex = viewControllerIndex - 1
         guard previousIndex >= 0 else {
             return orderedViewControllers.last
         }
-        
         guard orderedViewControllers.count > previousIndex else {
             return nil
         }
-        
         return orderedViewControllers[previousIndex]
     }
     
@@ -83,7 +76,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         guard let viewControllerIndex = orderedViewControllers.indexOf(viewController as! ContentViewController) else {
             return nil
         }
-        
         let nextIndex = viewControllerIndex + 1
         let orderedViewControllersCount = orderedViewControllers.count
         
@@ -91,13 +83,11 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         guard orderedViewControllersCount != nextIndex else {
             return orderedViewControllers.first
         }
-        
         guard orderedViewControllersCount > nextIndex else {
             return nil
         }
         return orderedViewControllers[nextIndex]
     }
-    
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
         print("orderedViewControllers.count is\(orderedViewControllers.count)" )
@@ -130,14 +120,17 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         self.navigationItem.title = "\(vc.indexNumber)"
     }
 
-    
     func shareImage () {
-        
-    }
-    
-
-    
-    func saveImageToapp () {
-        
+            print ("button share called")
+            //let shareImage = UIImage(named: "PM")!
+            if let shareImage = imageView.image {
+                let imageVC = UIActivityViewController(activityItems: [shareImage], applicationActivities: [])
+                //activityViewController.excludedActivityTypes = [ UIActivityTypePostToTwitter]
+                // activityViewController.excludedActivityTypes = [UIActivityTypePostToTwitter, UIActivityTypePostToFacebook, UIActivityTypeSaveToCameraRoll, UIActivityTypeMessage]
+                navigationController?.presentViewController(imageVC, animated: true) {
+                    // add alertview
+                }
+                // self.popUpSavedView()
+            }
     }
 }

@@ -12,7 +12,6 @@ import Toucan
 import UIKit
 
 class DataStore {
-    
     static let sharedInstance = DataStore()
     var pictureArray = [ImageObject]()
         
