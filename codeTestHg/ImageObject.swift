@@ -10,7 +10,6 @@
 import UIKit
 
 class ImageObject {
-    
     var url = ""
     var description = ""
     var name = ""

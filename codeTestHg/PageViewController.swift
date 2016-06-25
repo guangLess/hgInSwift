@@ -125,27 +125,17 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     func showIndexAtNavVC () {
         let vc = self.viewControllers![0] as! ContentViewController
         print (vc.indexLabel.text!)
-        let rightBarItemButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(PageViewController.checkPhotoLibraryStatus))
+        let rightBarItemButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(PageViewController.shareImage))
         self.navigationItem.rightBarButtonItem = rightBarItemButton
         self.navigationItem.title = "\(vc.indexNumber)"
     }
+
     
-    func checkPhotoLibraryStatus () -> Bool {
-
-        if  PHPhotoLibrary.authorizationStatus() == .Authorized{
-            print("Photo authorized \(PHPhotoLibrary.authorizationStatus())")
-            let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("contentVC") as! ContentViewController
-
-            contentViewController.saveImageOnThisContentView()
-            return true
-            
-        } else {
-            PHPhotoLibrary.requestAuthorization({ (PHAuthorizationStatus) in
-                print("need to authorize")
-            })
-        }
-        return false
+    func shareImage () {
+        
     }
+    
+
     
     func saveImageToapp () {
         

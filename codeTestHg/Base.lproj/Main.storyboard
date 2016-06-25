@@ -115,9 +115,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="586"/>
                                 <color key="backgroundColor" red="1" green="0.99400529449999997" blue="0.45113310880000002" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FS0-nD-Vre">
-                                <rect key="frame" x="210" y="7" width="145" height="254"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FS0-nD-Vre">
+                                <rect key="frame" x="210" y="114" width="145" height="147"/>
                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="0.98714632599999996" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="147" id="yY6-L2-m2e"/>
+                                </constraints>
                                 <state key="normal" title="x">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
@@ -125,13 +128,37 @@
                                     <action selector="shareButtonTest:" destination="ULW-3O-wTb" eventType="touchUpInside" id="IUi-yx-5Vl"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You just saved to this to the photo Album. Just make sure you knew it!    " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frj-xE-wcT">
+                                <rect key="frame" x="0.0" y="423" width="600" height="163"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="163" id="KEY-WD-7Qq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.99400529449999997" blue="0.45113310880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qiI-0f-v6M">
+                                <rect key="frame" x="65" y="114" width="145" height="62"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="TestAnimationButton:" destination="ULW-3O-wTb" eventType="touchUpInside" id="ulv-HS-Jsr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.85163073749999996" green="0.84731805810000005" blue="0.78707071510000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="frj-xE-wcT" secondAttribute="trailing" id="5z1-qt-Ygx"/>
+                            <constraint firstItem="frj-xE-wcT" firstAttribute="bottom" secondItem="OsZ-6o-5ge" secondAttribute="top" id="6rA-06-ADF"/>
                             <constraint firstItem="OsZ-6o-5ge" firstAttribute="top" secondItem="i4b-UT-Lkl" secondAttribute="bottom" id="8SL-FY-CYA"/>
+                            <constraint firstItem="frj-xE-wcT" firstAttribute="leading" secondItem="1BS-8m-eGl" secondAttribute="leading" id="A88-kY-rNB"/>
                             <constraint firstItem="OsZ-6o-5ge" firstAttribute="leading" secondItem="1BS-8m-eGl" secondAttribute="leading" id="AN3-LC-XY8"/>
                             <constraint firstAttribute="trailing" secondItem="i4b-UT-Lkl" secondAttribute="trailing" id="H5b-YD-Pmz"/>
                             <constraint firstItem="OsZ-6o-5ge" firstAttribute="bottom" secondItem="2lj-r2-ygJ" secondAttribute="top" id="Lrp-lt-gsd"/>
+                            <constraint firstItem="FS0-nD-Vre" firstAttribute="top" secondItem="8KH-QA-xfA" secondAttribute="bottom" constant="94" id="Xtc-PV-a99"/>
                             <constraint firstAttribute="trailing" secondItem="OsZ-6o-5ge" secondAttribute="trailing" id="dQI-SJ-Gxv"/>
                             <constraint firstItem="i4b-UT-Lkl" firstAttribute="top" secondItem="1BS-8m-eGl" secondAttribute="top" id="fYF-wI-8Pf"/>
                             <constraint firstItem="i4b-UT-Lkl" firstAttribute="leading" secondItem="1BS-8m-eGl" secondAttribute="leading" id="t2z-4a-kIQ"/>
@@ -140,6 +167,8 @@
                     <connections>
                         <outlet property="fittedImageView" destination="i4b-UT-Lkl" id="iJc-t7-euI"/>
                         <outlet property="indexLabel" destination="OsZ-6o-5ge" id="rJG-AJ-BUh"/>
+                        <outlet property="popUpView" destination="frj-xE-wcT" id="KQs-U5-q7F"/>
+                        <outlet property="popUpViewBottomConstrain" destination="6rA-06-ADF" id="bsl-OQ-a8l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kuh-Ia-987" userLabel="First Responder" sceneMemberID="firstResponder"/>

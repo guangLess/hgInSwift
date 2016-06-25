@@ -15,9 +15,7 @@ class DataStore {
     
     static let sharedInstance = DataStore()
     var pictureArray = [ImageObject]()
-    
-    init(){}
-    
+        
     func tryApicall(completion: ([[String: String]]) -> Void) {
         let apiUrl = "https://hinge-homework.s3.amazonaws.com/client/services/homework.json"
         Alamofire.request(.GET, apiUrl).responseJSON {  response in

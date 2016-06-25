@@ -5,49 +5,39 @@
 //  Created by Guang on 4/8/16.
 //  Copyright © 2016 Guang. All rights reserved.
 //
-
 import UIKit
 import AlamofireImage
 import Alamofire
-
 import PhotosUI
 
-
+//TODO: add refresh controller with icon. Take out button share stuff. save image with album...
 class CollectionImageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectinView: UICollectionView!
     let hgImageDataStore: DataStore  = DataStore.sharedInstance
-    
     private let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("videDidLoad called")
         
         collectinView.dataSource = self
         collectinView.delegate = self
-        
-        hgImageDataStore.tryApicall {_ in
-            print("We are completing done.")
-            dispatch_async(dispatch_get_main_queue(),{
-                                //print("We are good!!!!")
-                            self.collectinView.reloadData()
-            })
-        }
-         cellLayOutSetUP()
-        
-//        let saveImageClass = SaveImageFromApp()
-//        saveImageClass.status()
-        //checkPhotoLibraryStatus()
-        
-
+        updateUI()
+        cellLayOutSetUP()
+        checkPhotoLibraryStatus()
     }
     
+    func updateUI () {
+        hgImageDataStore.tryApicall {_ in
+            dispatch_async(dispatch_get_main_queue(),{
+                self.collectinView.reloadData()
+            })
+        }
+    }
     
     func checkPhotoLibraryStatus () {
-        
         if PHPhotoLibrary.authorizationStatus() == .Authorized {
-            print("Authorized")
+            print("Authorized") //TOFIX: is there a better way to handle this?
         } else {
             PHPhotoLibrary.requestAuthorization({ (PHAuthorizationStatus) in
                 print ("need to authorize")
@@ -55,40 +45,27 @@ class CollectionImageViewController: UIViewController, UICollectionViewDataSourc
         }
     }
     
-
-    
-    override func viewWillLayoutSubviews () {
-        print("viewWillLayoutSubviews called")
-    }
-    
     func cellLayOutSetUP () {
-        
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
         let screenBound = UIScreen.mainScreen().bounds
         let width = screenBound.size.width
-        //let height = screenBound.size.height
-        
         layout.itemSize = CGSize(width:(width)/3, height: (width)/3)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         collectinView.collectionViewLayout = layout
-   
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    //MARK: collectionView delegate/dataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //print("Number of items in section printing")
         return self.hgImageDataStore.pictureArray.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ImageCell
-        //print("cellForItemAtIndexPath ")
         cell.spinner.startAnimating()
         let imageObject = self.hgImageDataStore.pictureArray[indexPath.row]
         cell.imageName.text = imageObject.name
@@ -100,7 +77,6 @@ class CollectionImageViewController: UIViewController, UICollectionViewDataSourc
                 print(response.response)
                 debugPrint(response.result)
                 if let image = response.result.value {
-                    //print("image downloaded: \(image)")
                     dispatch_async(dispatch_get_main_queue(),{
                         cell.imageView.image = image
                         imageObject.image = image
@@ -136,10 +112,8 @@ class CollectionImageViewController: UIViewController, UICollectionViewDataSourc
             print ("landscape")
             layout.minimumInteritemSpacing = 0
             layout.minimumLineSpacing = 0
-            
         } else {
             print ("Portrait")
         }
     }
 }
-

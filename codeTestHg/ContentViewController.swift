@@ -28,9 +28,6 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
     var nativeSize = CGSizeMake(0, 0)
     private var imageView = UIImageView()
     
-    //private var centerX: NSLayoutConstraint!
-    //private var centerY: NSLayoutConstraint!
-    
     @IBOutlet weak var indexLabel: UILabel!
     private var fittedImage: UIImage!
 
@@ -50,6 +47,8 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTapAction))
         doubleTap.numberOfTapsRequired = 2
         view.addGestureRecognizer(doubleTap)
+        //FIXME: helper method to setup the hidden views. Is it good to have views hidden and just hide there?
+        //popUpView.hidden = true
         //print("viewDidLoad of ContentViewController called")
     }
 
@@ -175,12 +174,81 @@ class ContentViewController: UIViewController, UIScrollViewDelegate {
 
         print ("button share called")
 
-        let shareImage = UIImage(named: "PM")!
+        
+        //let shareImage = UIImage(named: "PM")!
+        if let shareImage = imageView.image {
         let imageVC = UIActivityViewController(activityItems: [shareImage], applicationActivities: [])
         //activityViewController.excludedActivityTypes = [ UIActivityTypePostToTwitter]
         // activityViewController.excludedActivityTypes = [UIActivityTypePostToTwitter, UIActivityTypePostToFacebook, UIActivityTypeSaveToCameraRoll, UIActivityTypeMessage]
         navigationController?.presentViewController(imageVC, animated: true) {
-            // ...
+            // add alertview
         }
+           // self.popUpSavedView()
+
+        }
+    }
+    
+    @IBOutlet weak var popUpViewBottomConstrain: NSLayoutConstraint!
+    @IBOutlet weak var popUpView: UILabel!
+    //FIXME: add animation for the page movement. Animate the bond of the frame. The popUp should be a trangle color block.
+    
+    @IBAction func TestAnimationButton(sender: AnyObject) {
+            popUpSavedView()
+        
+    }
+    
+    func popUpSavedView (){
+        popUpView.hidden = false
+/*
+         let duration = 2.0
+         let delay = 0.0
+         let options = UIViewKeyframeAnimationOptions.CalculationModeLinear
+         
+         UIView.animateKeyframesWithDuration(duration, delay: delay, options: options, animations: {
+         // each keyframe needs to be added here
+         // within each keyframe the relativeStartTime and relativeDuration need to be values between 0.0 and 1.0
+         
+         UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1/3, animations: {
+         // start at 0.00s (5s × 0)
+         // duration 1.67s (5s × 1/3)
+         // end at   1.67s (0.00s + 1.67s)
+         self.fish.transform = CGAffineTransformMakeRotation(1/3 * fullRotation)
+         })
+         UIView.addKeyframeWithRelativeStartTime(1/3, relativeDuration: 1/3, animations: {
+         self.fish.transform = CGAffineTransformMakeRotation(2/3 * fullRotation)
+         })
+         UIView.addKeyframeWithRelativeStartTime(2/3, relativeDuration: 1/3, animations: {
+         self.fish.transform = CGAffineTransformMakeRotation(3/3 * fullRotation)
+         })
+         
+         }, completion: {finished in
+         // any code entered here will be applied
+         // once the animation has completed
+         
+         })
+         }
+ */
+        
+        //TODO: try animation in a different xcode project.
+        
+        UIView.animateKeyframesWithDuration(4, delay: 0.3, options: UIViewKeyframeAnimationOptions.CalculationModeLinear, animations: {
+            //code
+            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1, animations: {
+                self.popUpView.backgroundColor = UIColor.blackColor()
+            })
+            
+            UIView.addKeyframeWithRelativeStartTime(2, relativeDuration: 1/3, animations: {
+                self.popUpView.backgroundColor = UIColor.redColor()
+            })
+            UIView.addKeyframeWithRelativeStartTime(3, relativeDuration: 1/3, animations: {
+                self.popUpViewBottomConstrain.constant = 130
+            })
+            
+            }) { (Bool) in
+                //
+        }
+
+       // })
+        
     }
 }
